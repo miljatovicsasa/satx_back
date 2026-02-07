@@ -26,6 +26,13 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::watch.watch"
+    },
+    "HeroBanner": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
     }
   }
 }

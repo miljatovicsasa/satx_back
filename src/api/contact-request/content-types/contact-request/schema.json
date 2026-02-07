@@ -4,14 +4,14 @@
   "info": {
     "singularName": "contact-request",
     "pluralName": "contact-requests",
-    "displayName": "ContactRequest"
+    "displayName": "Purchase"
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "name": {
+    "firstName": {
       "type": "string",
       "required": true
     },
@@ -27,6 +27,63 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::watch.watch"
+    },
+    "lastName": {
+      "type": "string",
+      "required": true
+    },
+    "phone": {
+      "type": "string",
+      "required": true
+    },
+    "quantity": {
+      "type": "integer",
+      "required": true
+    },
+    "priceSnapshot": {
+      "type": "decimal",
+      "required": true
+    },
+    "currency": {
+      "type": "enumeration",
+      "enum": [
+        "EUR",
+        "RSD"
+      ]
+    },
+    "statusOfPurchase": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "new",
+        "confirmed",
+        "awaiting_payment",
+        "paid",
+        "shipped",
+        "cancelled"
+      ]
+    },
+    "internalNote": {
+      "type": "text"
+    },
+    "country": {
+      "type": "string",
+      "required": true
+    },
+    "city": {
+      "type": "string",
+      "required": true
+    },
+    "prefferedContact": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "phoneCall",
+        "phoneMessage",
+        "whatsApp",
+        "Viber",
+        "email"
+      ]
     }
   }
 }

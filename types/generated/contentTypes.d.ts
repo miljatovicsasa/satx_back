@@ -526,7 +526,7 @@ export interface ApiContactRequestContactRequest
   extends Struct.CollectionTypeSchema {
   collectionName: 'contact_requests';
   info: {
-    displayName: 'ContactRequest';
+    displayName: 'Purchase';
     pluralName: 'contact-requests';
     singularName: 'contact-request';
   };
@@ -534,10 +534,16 @@ export interface ApiContactRequestContactRequest
     draftAndPublish: true;
   };
   attributes: {
+    city: Schema.Attribute.String & Schema.Attribute.Required;
+    country: Schema.Attribute.String & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    currency: Schema.Attribute.Enumeration<['EUR', 'RSD']>;
     email: Schema.Attribute.String & Schema.Attribute.Required;
+    firstName: Schema.Attribute.String & Schema.Attribute.Required;
+    internalNote: Schema.Attribute.Text;
+    lastName: Schema.Attribute.String & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -545,8 +551,18 @@ export interface ApiContactRequestContactRequest
     > &
       Schema.Attribute.Private;
     message: Schema.Attribute.Blocks & Schema.Attribute.Required;
-    name: Schema.Attribute.String & Schema.Attribute.Required;
+    phone: Schema.Attribute.String & Schema.Attribute.Required;
+    prefferedContact: Schema.Attribute.Enumeration<
+      ['phoneCall', 'phoneMessage', 'whatsApp', 'Viber', 'email']
+    > &
+      Schema.Attribute.Required;
+    priceSnapshot: Schema.Attribute.Decimal & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
+    quantity: Schema.Attribute.Integer & Schema.Attribute.Required;
+    statusOfPurchase: Schema.Attribute.Enumeration<
+      ['new', 'confirmed', 'awaiting_payment', 'paid', 'shipped', 'cancelled']
+    > &
+      Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -601,6 +617,7 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    HeroBanner: Schema.Attribute.Media<'images'>;
     HeroSubtitle: Schema.Attribute.Text;
     HeroTitle: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
